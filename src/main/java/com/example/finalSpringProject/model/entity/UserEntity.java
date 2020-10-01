@@ -52,10 +52,10 @@ public class UserEntity {
         @JoinTable (name = "user_payment",
         joinColumns = @JoinColumn(name = "user_id"),
         inverseJoinColumns = @JoinColumn(name = "payment_id"))
-    List<PaymentEntity> payments;
+    private List<PaymentEntity> payments;
 
 
     public enum ROLE {
-        user, admin, guest;
+        USER, ADMIN, ROLE;
     }
 }

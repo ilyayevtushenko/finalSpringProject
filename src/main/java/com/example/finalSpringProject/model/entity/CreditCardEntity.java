@@ -27,7 +27,7 @@ public class CreditCardEntity {
 
     @Basic(optional = false)
     @Column(name = "CVV2")
-    private Integer CVV2;
+    private String CVV2;
 
     @ManyToOne
     @JoinColumn (name = "user_id", nullable = false)
@@ -36,8 +36,5 @@ public class CreditCardEntity {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private AccountEntity account;
-
-
-
 
 }

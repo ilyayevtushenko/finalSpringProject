@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.File;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -22,7 +25,30 @@ public class PaymentEntity {
     @Column(name = "id")
     private Long id;
 
-    
+    @Basic(optional = false)
+    @Column(name = "date")
+    private Date date;
+
+    @Basic(optional = false)
+    @Column(name = "price")
+    private BigDecimal price;
+
+    @Enumerated(EnumType.STRING)
+    @Column (name = "payment_status")
+    private PAYMENT_STATUS paymentStatus;
+
+    @Basic(optional = false)
+    @Column(name = "receipt")
+    private File receipt;
+
+    @ManyToOne
+    @JoinColumn(name = "account_id", nullable = false)
+    private AccountEntity account;
+
     @ManyToMany (mappedBy = "payments")
     private List<UserEntity> users;
+
+    public enum PAYMENT_STATUS {
+        READY, SENT
+    }
 }

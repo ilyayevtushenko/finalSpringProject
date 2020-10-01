@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.relational.core.mapping.Table;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -22,6 +24,21 @@ public class AccountEntity {
     @Column(name = "id")
     private Long id;
 
-    @OneToOne (mappedBy = "")
+    @OneToOne (mappedBy = "accounts")
     private CreditCardEntity creditCard;
+
+    @Basic(optional = false)
+    @Column(name = "name")
+    private String name;
+
+    @Basic(optional = false)
+    @Column(name = "balance")
+    private BigDecimal balance;
+
+    @OneToMany
+    @JoinColumn (name = "account_id")
+    private List<PaymentEntity> payments;
+
+
+
 }
