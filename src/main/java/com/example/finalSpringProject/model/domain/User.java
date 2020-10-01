@@ -3,6 +3,7 @@ package com.example.finalSpringProject.model.domain;
 
 import com.example.finalSpringProject.model.entity.CreditCardEntity;
 import com.example.finalSpringProject.model.entity.PaymentEntity;
+import com.example.finalSpringProject.model.entity.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -36,16 +37,18 @@ public class User implements UserDetails {
 
     private String lastName;
 
-    private String role;
+    private UserEntity.ROLE role;
 
-    private List<CreditCardEntity> creditCards;
+    private List<CreditCard> creditCard;
 
-    private List<PaymentEntity> payments;
+    private List<Payment> sentPayments;
+
+    private List<Payment> receivedPayments;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List <GrantedAuthority> authorities = new LinkedList<>();
-        authorities.add(new SimpleGrantedAuthority(role));
+        authorities.add(new SimpleGrantedAuthority(role.toString()));
         return authorities;
     }
 

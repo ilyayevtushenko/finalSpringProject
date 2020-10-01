@@ -44,16 +44,14 @@ public class UserEntity {
     @Column (name = "role")
     private ROLE role;
 
-    @OneToMany (mappedBy = "credit_card")
-    private List <CreditCardEntity> creditCards;
+    @OneToMany(mappedBy = "user")
+    private List <CreditCardEntity> creditCard;
 
-    @ManyToMany (cascade = {CascadeType.PERSIST, CascadeType.DETACH,
-                            CascadeType.MERGE, CascadeType.REFRESH})
-        @JoinTable (name = "user_payment",
-        joinColumns = @JoinColumn(name = "user_id"),
-        inverseJoinColumns = @JoinColumn(name = "payment_id"))
-    private List<PaymentEntity> payments;
+    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<PaymentEntity> sentPayments;
 
+    @OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<PaymentEntity> receivedPayments;
 
     public enum ROLE {
         USER, ADMIN, ROLE;

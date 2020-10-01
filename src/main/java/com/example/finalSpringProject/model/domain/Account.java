@@ -19,11 +19,9 @@ public class Account {
 
     private Long id;
 
-    private CreditCardEntity creditCard;
-
     private String name;
 
     private BigDecimal balance;
 
-    private List<PaymentEntity> payments;
+    private List<Payment> payment;
 }

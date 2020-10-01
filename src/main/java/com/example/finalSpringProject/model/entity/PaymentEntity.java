@@ -1,5 +1,6 @@
 package com.example.finalSpringProject.model.entity;
 
+import com.example.finalSpringProject.model.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "payments")
+@Table(name = "payment")
 public class PaymentEntity {
 
     @Id
@@ -42,11 +43,16 @@ public class PaymentEntity {
     private File receipt;
 
     @ManyToOne
-    @JoinColumn(name = "account_id", nullable = false)
+    @JoinColumn(name="account_id", nullable=false)
     private AccountEntity account;
 
-    @ManyToMany (mappedBy = "payments")
-    private List<UserEntity> users;
+    @ManyToOne
+    @JoinColumn(name="sender_id", insertable = false, updatable = false)
+    private UserEntity sender;
+
+    @ManyToOne
+    @JoinColumn(name="receiver_id", insertable = false, updatable = false)
+    private UserEntity receiver;
 
     public enum PAYMENT_STATUS {
         READY, SENT

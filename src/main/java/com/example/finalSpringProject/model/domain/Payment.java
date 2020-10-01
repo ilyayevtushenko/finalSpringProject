@@ -31,8 +31,9 @@ public class Payment {
     @PositiveOrZero
     private BigDecimal price;
 
-    private String paymentStatus;
+    private PaymentEntity.PAYMENT_STATUS paymentStatus;
     private File receipt;
-    private AccountEntity account;
-    private List<UserEntity> users;
+    private Account account;
+    private User sender;
+    private User receiver;
 }

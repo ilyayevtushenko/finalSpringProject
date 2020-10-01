@@ -17,7 +17,7 @@ public class CreditCard {
     private Long id;
     private String number;
     private String CVV2;
-    private UserEntity owner;
-    private AccountEntity account;
+    private User user;
+    private Account account;
 
 }
