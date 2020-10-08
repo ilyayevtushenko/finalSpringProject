@@ -18,6 +18,7 @@ import javax.validation.constraints.Pattern;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor(onConstructor = @__(@Autowired))
@@ -39,11 +40,11 @@ public class User implements UserDetails {
 
     private UserEntity.ROLE role;
 
-    private List<CreditCard> creditCard;
+    private Set<CreditCard> creditCard;
 
-    private List<Payment> sentPayments;
+    private Set<Payment> sentPayments;
 
-    private List<Payment> receivedPayments;
+    private Set<Payment> receivedPayments;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

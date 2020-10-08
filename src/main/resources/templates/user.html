@@ -1,0 +1,50 @@
+<head th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+    <title th:text='#{title}'></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css"/>
+</head>
+
+<nav class="navbar navbar-light bg-light">
+    <form class="form-inline">
+        <button class="btn btn-default" type="button">logout</button>
+        <button class="btn btn-sm btn-secondary disabled" type="button">Statistics</button>
+    </form>
+</nav>
+
+<table class="table table-hover table-bordered">
+    <thead>
+    <tr>
+        <th scope="col" th:text ="#{creditcard.number}"></th>
+        <th scope="col">Account name</th>
+        <th scope="col">Balance</th>
+        <th scope="col">block</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">card1</th>
+        <td>account1</td>
+        <td>balance1</td>
+        <td><button>block</button></td>
+    </tr>
+    <tr>
+        <th scope="row">card2</th>
+        <td>account2</td>
+        <td>balance2</td>
+        <td><button>block</button></td>
+    </tr>
+    <tr>
+        <th scope="row">card3</th>
+        <td>account3</td>
+        <td>balance3</td>
+        <td><button>block</button></td>
+    </tr>
+    </tbody>
+</table>
+<a class="btn btn-success" href="/card" role="button">Add Credit Card</a>
+<button class="btn btn-warning">top up balance</button>
+<a class="btn btn-success" href="/payment" role="button">Create payment</a>
+</html>

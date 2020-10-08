@@ -1,0 +1,31 @@
+<head th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">
+    <title th:text='#{title}'></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css"/>
+</head>
+<!-- Default form login -->
+<div class="container" align="center">
+    <form class="text-center border border-light p-5" method="POST" action="/login">
+
+        <p class="h4 mb-4">Sign in</p>
+
+        <!-- Email -->
+        <label for="email">Email адрес</label>
+        <input name="email" type="email" id="email" class="form-control mb-4" placeholder="E-mail">
+
+        <!-- Password -->
+        <label for="password">Пароль</label>
+        <input name="password" type="password" id="password" class="form-control mb-4" placeholder="Password">
+
+        <!-- Sign in button -->
+        <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+
+        <!-- Register -->
+        <p>Not a member?
+            <a href="/registration">Register</a>
+        </p>
+
+    </form>
+</div>
+<!-- Default form login -->

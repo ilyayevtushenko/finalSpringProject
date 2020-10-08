@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "payment")
+@Table(name = "payments")
 public class PaymentEntity {
 
     @Id
@@ -44,7 +44,7 @@ public class PaymentEntity {
 
     @ManyToOne
     @JoinColumn(name="account_id", nullable=false)
-    private AccountEntity account;
+    private AccountEntity accounts;
 
     @ManyToOne
     @JoinColumn(name="sender_id", insertable = false, updatable = false)

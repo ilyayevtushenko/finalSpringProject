@@ -1,20 +1,18 @@
 package com.example.finalSpringProject.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 
 public class UserEntity {
 
@@ -44,16 +42,17 @@ public class UserEntity {
     @Column (name = "role")
     private ROLE role;
 
-    @OneToMany(mappedBy = "user")
-    private List <CreditCardEntity> creditCard;
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @EqualsAndHashCode.Exclude @ToString.Exclude
+    private Set<CreditCardEntity> creditCard;
 
-    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<PaymentEntity> sentPayments;
+    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<PaymentEntity> sentPayments;
 
-    @OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<PaymentEntity> receivedPayments;
+    @OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<PaymentEntity> receivedPayments;
 
     public enum ROLE {
-        USER, ADMIN, ROLE;
+        USER, ADMIN, GUEST;
     }
 }

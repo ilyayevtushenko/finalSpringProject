@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor(onConstructor = @__(@Autowired))
@@ -23,5 +25,16 @@ public class Account {
 
     private BigDecimal balance;
 
-    private List<Payment> payment;
+    private Set<Payment> payment;
+
+    public void setName() {
+        String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+        while (salt.length() < 18) { // length of the random string.
+            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+            salt.append(SALTCHARS.charAt(index));
+        }
+        this.name = salt.toString();
+    }
 }

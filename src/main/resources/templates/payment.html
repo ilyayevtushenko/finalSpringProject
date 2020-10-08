@@ -1,0 +1,25 @@
+<head th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">
+    <title th:text='#{title}'></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css"/>
+</head>
+<!-- Default form register -->
+<form class="text-center border border-light p-5" method="post" action="/card">
+
+    <p class="h4 mb-4">Create payment</p>
+
+    <div class="form-row mb-4">
+        <div class="col">
+            <!-- First name -->
+            <input name="number" type="text" id="number" class="form-control" placeholder="Number">
+        </div>
+        <div class="col">
+            <!-- Last name -->
+            <input name="CVV@" type="text" id="CVV2" class="form-control" placeholder="CVV2">
+        </div>
+    </div>
+    <!-- Sign up button -->
+    <button class="btn btn-info my-4 btn-block" type="submit">Add</button>
+
+</form>
