@@ -29,11 +29,11 @@ public class CreditCardEntity {
     private String CVV2;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private UserEntity user;
+    @JoinColumn(name = "users_id")
+    private UserEntity users;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "account_id", referencedColumnName = "id")
-    private AccountEntity account;
+    @OneToOne(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+    @JoinColumn(name = "accounts_id", referencedColumnName = "id")
+    private AccountEntity accounts;
 
 }

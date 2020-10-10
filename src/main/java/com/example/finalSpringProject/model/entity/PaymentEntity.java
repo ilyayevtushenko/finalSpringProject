@@ -1,6 +1,5 @@
 package com.example.finalSpringProject.model.entity;
 
-import com.example.finalSpringProject.model.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,15 +8,13 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.File;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "payment")
+@Table(name = "payments")
 public class PaymentEntity {
 
     @Id
@@ -28,7 +25,7 @@ public class PaymentEntity {
 
     @Basic(optional = false)
     @Column(name = "date")
-    private Date date;
+    private String date;
 
     @Basic(optional = false)
     @Column(name = "price")
@@ -44,7 +41,7 @@ public class PaymentEntity {
 
     @ManyToOne
     @JoinColumn(name="account_id", nullable=false)
-    private AccountEntity account;
+    private AccountEntity accounts;
 
     @ManyToOne
     @JoinColumn(name="sender_id", insertable = false, updatable = false)

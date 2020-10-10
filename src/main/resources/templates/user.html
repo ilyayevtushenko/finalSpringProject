@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" th:with="lang=${#locale.language}" th:lang="${lang}">
+<head th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">
+    <title th:text="#{title}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css"/>
+</head>
+
+<nav class="navbar navbar-light bg-light">
+    <form class="form-inline">
+        <li class="nav-item"><a class="nav-link" href="/logout" th:if="${session.role} != null"
+                                th:text="#{menu.logout}"></a>
+        <button class="btn btn-sm btn-secondary disabled" type="button">Statistics</button>
+    </form>
+</nav>
+
+<table class="table table-hover table-bordered">
+    <thead>
+    <tr>
+        <th scope="col" th:text ="#{credit.card.number}"></th>
+        <th scope="col">block</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${creditcards == null}">
+        <td colspan="2" th:text="#{no.card}"></td>
+    </tr>
+    <tr th:each="creditcard : ${creditcards}" >
+        <td><span th:text="${creditcard.number}"></span></td>
+        <td><button>block</button></td>
+    </tbody>
+</table>
+<table class="table table-hover table-bordered">
+    <thead>
+    <tr>
+        <th scope="col"th:text="#{account.number}"></th>
+        <th scope="col"th:text="#{balance}"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${accounts == null}">
+        <td colspan="2"th:text="#{no.account}"></td>
+    </tr>
+    <tr th:each="account : ${accounts}">
+        <td><span th:text="${account.name}"></span></td>
+        <td><span th:text="${account.balance}"></span></td>
+    </tr>
+    </tbody>
+</table>
+<a class="btn btn-success" href="/card" role="button" th:text="#{add.credit.card}"></a>
+<a class="btn btn-warning" href="/add_balance" role="button" th:text="#{replenish.balance}"></a>
+<a class="btn btn-success" href="/payment" role="button" th:text="#{create.payment}"></a>
+
+
+<a class="btn btn-info" href="?lang=ua">Українська</a>
+<a class="btn btn-info" href="?lang=en">English</a>
+
+</html>

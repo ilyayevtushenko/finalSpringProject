@@ -2,38 +2,31 @@ package com.example.finalSpringProject.model.service.mapper;
 
 import com.example.finalSpringProject.model.domain.Account;
 import com.example.finalSpringProject.model.entity.AccountEntity;
+import com.example.finalSpringProject.model.entity.CreditCardEntity;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 
 @Component
-@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class AccountMapper {
 
-    private final PaymentMapper paymentMapper;
+    private final ModelMapper modelMapper;
 
+    public AccountMapper(ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
+    }
     public Account accountEntityToAccount (AccountEntity accountEntity){
-        return Objects.isNull(accountEntity) ?
-                null :
-                Account.builder()
-                .id(accountEntity.getId())
-                .name(accountEntity.getName())
-                .balance(accountEntity.getBalance())
-                .payment(paymentMapper.mapEntityToList(accountEntity.getPayment()))
-                .build();
+        return Objects.isNull(accountEntity) ? null
+                : modelMapper.map(accountEntity, Account.class);
     }
 
     public AccountEntity accountToAccountEntity (Account account) {
-        return Objects.isNull(account) ?
-                null :
-                AccountEntity.builder()
-                        .id(account.getId())
-                        .name(account.getName())
-                        .balance(account.getBalance())
-                        .payment(paymentMapper.mapListToEntity(account.getPayment()))
-                        .build();
+        return Objects.isNull(account) ? null
+                : modelMapper.map(account, AccountEntity.class);
+
 
     }
 }

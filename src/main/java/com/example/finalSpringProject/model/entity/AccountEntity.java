@@ -7,14 +7,14 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
-@Table (name = "account")
+@Table (name = "accounts")
 public class AccountEntity {
 
     @Id
@@ -31,8 +31,8 @@ public class AccountEntity {
     @Column(name = "balance")
     private BigDecimal balance;
 
-    @OneToMany(mappedBy = "account")
-    private List<PaymentEntity> payment;
+    @OneToMany(mappedBy = "accounts")
+    private Set<PaymentEntity> payments;
 
 
 
