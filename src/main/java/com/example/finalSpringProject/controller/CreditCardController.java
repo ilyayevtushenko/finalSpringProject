@@ -23,11 +23,11 @@ public class CreditCardController {
     private final CreditCardService creditCardService;
 
     @GetMapping("/card")
-    public String cardView(Model model) {
+    public String cardView() {
         return "/card";
     }
     @PostMapping("/card")
-    public String addCreditCard (Model model, @ModelAttribute CreditCard creditCard) {
+    public String addCreditCard (@ModelAttribute CreditCard creditCard) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String name = authentication.getName();
         creditCardService.addCreditCard(creditCard, name);

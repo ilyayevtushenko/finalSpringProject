@@ -28,7 +28,7 @@ public class PaymentEntity {
 
     @Basic(optional = false)
     @Column(name = "date")
-    private Date date;
+    private String date;
 
     @Basic(optional = false)
     @Column(name = "price")

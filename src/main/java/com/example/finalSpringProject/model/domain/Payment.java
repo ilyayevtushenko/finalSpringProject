@@ -25,8 +25,8 @@ public class Payment {
 
     private Long id;
 
-    @FutureOrPresent
-    private Date date;
+
+    private String date;
 
     @PositiveOrZero
     private BigDecimal price;

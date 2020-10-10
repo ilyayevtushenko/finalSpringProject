@@ -32,7 +32,7 @@ public class CreditCardEntity {
     @JoinColumn(name = "users_id")
     private UserEntity users;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
     @JoinColumn(name = "accounts_id", referencedColumnName = "id")
     private AccountEntity accounts;
 

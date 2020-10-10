@@ -1,7 +1,6 @@
 package com.example.finalSpringProject.model.service;
 
 import com.example.finalSpringProject.model.domain.CreditCard;
-import com.example.finalSpringProject.model.domain.User;
 
 import java.util.Set;
 
