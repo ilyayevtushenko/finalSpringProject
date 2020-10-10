@@ -5,9 +5,11 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -43,7 +45,6 @@ public class UserEntity {
     private ROLE role;
 
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @EqualsAndHashCode.Exclude @ToString.Exclude
     private Set<CreditCardEntity> creditCard;
 
     @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -54,5 +55,23 @@ public class UserEntity {
 
     public enum ROLE {
         USER, ADMIN, GUEST;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof UserEntity)) return false;
+        UserEntity that = (UserEntity) o;
+        return Objects.equals(getId(), that.getId()) &&
+                Objects.equals(getEmail(), that.getEmail()) &&
+                Objects.equals(getPassword(), that.getPassword()) &&
+                Objects.equals(getFirstName(), that.getFirstName()) &&
+                Objects.equals(getLastName(), that.getLastName()) &&
+                getRole() == that.getRole();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getEmail(), getPassword(), getFirstName(), getLastName(), getRole());
     }
 }

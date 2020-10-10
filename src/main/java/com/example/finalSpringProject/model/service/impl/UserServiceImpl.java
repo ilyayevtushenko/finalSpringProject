@@ -42,24 +42,6 @@ public class UserServiceImpl implements UserService {
         return userMapper.userEntityToUser(saveEntity);
 
     }
-//    @Override
-//    public User registration(User user) {
-//        if (Objects.isNull(user)) {
-//            log.warn("User is null");
-//            throw new InvalidDataRuntimeException("User is null");
-//        }
-//
-//        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
-//            log.info("Don't find user by this email");
-//            throw new EntityNotFoundRuntimeException("Don't find user by this email");
-//        }
-//
-//        user.setPassword(encoder.encode(user.getPassword()));
-//        UserEntity userEntity = userMapper.userToUserEntity(user);
-//        UserEntity saveEntity = userRepository.save(userEntity);
-//
-//        return userMapper.userEntityToUser(saveEntity);
-//    }
 
     @Override
     public User findById(Long id) {
