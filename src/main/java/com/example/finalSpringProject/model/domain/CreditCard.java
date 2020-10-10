@@ -1,7 +1,5 @@
 package com.example.finalSpringProject.model.domain;
 
-import com.example.finalSpringProject.model.entity.AccountEntity;
-import com.example.finalSpringProject.model.entity.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

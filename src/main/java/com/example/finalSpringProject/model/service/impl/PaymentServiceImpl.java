@@ -1,7 +1,5 @@
 package com.example.finalSpringProject.model.service.impl;
 
-import com.example.finalSpringProject.model.domain.Payment;
-import com.example.finalSpringProject.model.entity.AccountEntity;
 import com.example.finalSpringProject.model.entity.PaymentEntity;
 import com.example.finalSpringProject.model.entity.UserEntity;
 import com.example.finalSpringProject.model.exeptions.InvalidDataRuntimeException;
@@ -9,7 +7,6 @@ import com.example.finalSpringProject.model.repository.PaymentRepository;
 import com.example.finalSpringProject.model.repository.UserRepository;
 import com.example.finalSpringProject.model.service.AccountService;
 import com.example.finalSpringProject.model.service.PaymentService;
-import com.example.finalSpringProject.model.service.mapper.UserMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +24,6 @@ public class PaymentServiceImpl implements PaymentService {
 
     private final UserRepository userRepository;
     private final AccountService accountService;
-    private final UserMapper userMapper;
     private final PaymentRepository paymentRepository;
 
     @Override

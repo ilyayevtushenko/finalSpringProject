@@ -1,7 +1,5 @@
 package com.example.finalSpringProject.model.domain;
 
-import com.example.finalSpringProject.model.entity.CreditCardEntity;
-import com.example.finalSpringProject.model.entity.PaymentEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

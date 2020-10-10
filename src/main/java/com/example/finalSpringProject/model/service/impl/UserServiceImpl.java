@@ -3,7 +3,6 @@ package com.example.finalSpringProject.model.service.impl;
 import com.example.finalSpringProject.model.domain.User;
 import com.example.finalSpringProject.model.entity.UserEntity;
 import com.example.finalSpringProject.model.exeptions.EntityNotFoundRuntimeException;
-import com.example.finalSpringProject.model.exeptions.InvalidDataRuntimeException;
 import com.example.finalSpringProject.model.repository.UserRepository;
 import com.example.finalSpringProject.model.service.UserService;
 import com.example.finalSpringProject.model.service.mapper.UserMapper;

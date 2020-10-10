@@ -1,7 +1,6 @@
 package com.example.finalSpringProject.model.service;
 
 import com.example.finalSpringProject.model.domain.Account;
-import com.example.finalSpringProject.model.domain.CreditCard;
 
 import java.math.BigDecimal;
 import java.util.Set;

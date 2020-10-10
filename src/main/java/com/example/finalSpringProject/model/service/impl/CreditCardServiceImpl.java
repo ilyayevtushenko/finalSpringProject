@@ -6,7 +6,6 @@ import com.example.finalSpringProject.model.domain.User;
 import com.example.finalSpringProject.model.entity.AccountEntity;
 import com.example.finalSpringProject.model.entity.CreditCardEntity;
 import com.example.finalSpringProject.model.entity.UserEntity;
-import com.example.finalSpringProject.model.exeptions.EntityNotFoundRuntimeException;
 import com.example.finalSpringProject.model.exeptions.InvalidDataRuntimeException;
 import com.example.finalSpringProject.model.repository.AccountRepository;
 import com.example.finalSpringProject.model.repository.CreditCardRepository;
