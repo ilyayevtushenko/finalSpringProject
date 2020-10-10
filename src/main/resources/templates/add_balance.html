@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" th:with="lang=${#locale.language}" th:lang="${lang}">
+<head th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">
+    <title th:text='#{title}'></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css"/>
+</head>
+<!-- Default form register -->
+<form class="text-center border border-light p-5" method="post" action="/addbalance">
+
+    <p class="h4 mb-4">Replenish balance</p>
+
+    <div class="form-row mb-4">
+        <div class="col">
+            <!-- Credit Card number -->
+            <input name="number" type="text" id="number" class="form-control" placeholder="Number">
+        </div>
+        <div class="col">
+            <!-- Last name -->
+            <input name="balance" type="text" id="balance" class="form-control" placeholder="balance">
+        </div>
+    </div>
+    <!-- Sign up button -->
+    <button class="btn btn-info my-4 btn-block" type="submit">Replenish</button>
+
+</form>
+</html>

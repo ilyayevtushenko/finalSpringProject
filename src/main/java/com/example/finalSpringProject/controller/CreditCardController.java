@@ -31,7 +31,7 @@ public class CreditCardController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String name = authentication.getName();
         creditCardService.addCreditCard(creditCard, name);
-        return "/user";
+        return "redirect:/user";
     }
 
 }

@@ -5,6 +5,8 @@ import com.example.finalSpringProject.model.domain.CreditCard;
 import com.example.finalSpringProject.model.domain.User;
 import com.example.finalSpringProject.model.entity.AccountEntity;
 import com.example.finalSpringProject.model.entity.CreditCardEntity;
+import com.example.finalSpringProject.model.entity.UserEntity;
+import com.example.finalSpringProject.model.exeptions.EntityNotFoundRuntimeException;
 import com.example.finalSpringProject.model.exeptions.InvalidDataRuntimeException;
 import com.example.finalSpringProject.model.repository.AccountRepository;
 import com.example.finalSpringProject.model.repository.CreditCardRepository;
@@ -13,14 +15,18 @@ import com.example.finalSpringProject.model.service.CreditCardService;
 import com.example.finalSpringProject.model.service.UserService;
 import com.example.finalSpringProject.model.service.mapper.AccountMapper;
 import com.example.finalSpringProject.model.service.mapper.CreditCardMapper;
+import com.example.finalSpringProject.model.service.mapper.UserMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -33,6 +39,7 @@ public class CreditCardServiceImpl implements CreditCardService {
     private final CreditCardMapper creditCardMapper;
     private final UserRepository userRepository;
     private final UserService userService;
+    private final UserMapper userMapper;
 
     @Override
     public void addCreditCard(CreditCard creditCard, String name) {
@@ -40,8 +47,8 @@ public class CreditCardServiceImpl implements CreditCardService {
             log.warn("Invalid input bus data");
             throw new InvalidDataRuntimeException("Invalid input Credit Card data");
         }
-        Optional<CreditCardEntity> busEntity = creditCardRepository.findByNumber(creditCard.getNumber());
-        if (busEntity.isPresent()) {
+        Optional<CreditCardEntity> creditCardEntity = creditCardRepository.findByNumber(creditCard.getNumber());
+        if (creditCardEntity.isPresent()) {
             log.warn("Credit Card with this number already exists");
             throw new InvalidDataRuntimeException("Credit Card with this number already exists");
         }
@@ -52,11 +59,25 @@ public class CreditCardServiceImpl implements CreditCardService {
         accountRepository.save(accountEntity);
 
         User user = userService.findByEmail(name);
-
-        creditCard.setUser(user);
-        creditCard.setAccount(account);
+//
         CreditCardEntity entityCard = creditCardMapper.creditCardToCreditCardEntity(creditCard);
+        entityCard.setAccounts(accountMapper.accountToAccountEntity(account));
+        entityCard.setUsers(userMapper.userToUserEntity(user));
         creditCardRepository.save(entityCard);
     }
+
+    @Override
+    public Set<CreditCard> getAllCardsByUserName(String name) {
+        User user = userService.findByEmail(name);
+        UserEntity userEntity = userMapper.userToUserEntity(user);
+
+        Set<CreditCardEntity> creditCardEntities = new HashSet<>(creditCardRepository
+                .findAllByUsers(userEntity));
+
+        return creditCardEntities.stream().map(creditCardMapper::creditCardEntityToCreditCard)
+                .collect(Collectors.toSet());
+
+    }
+
 
 }

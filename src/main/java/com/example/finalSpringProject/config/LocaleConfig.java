@@ -16,17 +16,13 @@ import java.util.Locale;
 @Configuration
 public class LocaleConfig implements WebMvcConfigurer {
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(localeChangeInterceptor());
-    }
-
     @Bean
-    public LocaleResolver localeResolver() {
+    public SessionLocaleResolver localeResolver() {
         SessionLocaleResolver slr = new SessionLocaleResolver();
-        slr.setDefaultLocale(new Locale("ru"));
+        slr.setDefaultLocale(new Locale("en"));
         return slr;
     }
+
 
     @Bean
     public LocaleChangeInterceptor localeChangeInterceptor() {
@@ -35,15 +31,17 @@ public class LocaleConfig implements WebMvcConfigurer {
         return lci;
     }
 
-    @Bean
-    public MessageSource messageSource() {
-        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename("classpath:/i18n/contentBundle");
-        return messageSource;
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(localeChangeInterceptor());
     }
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+    public MessageSource messageSource() {
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasename("classpath:/i18n/locale");
+        return messageSource;
     }
+
+
 }

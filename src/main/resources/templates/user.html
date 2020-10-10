@@ -1,7 +1,7 @@
-<head th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.w3.org/1999/xhtml">
-    <title th:text='#{title}'></title>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" th:with="lang=${#locale.language}" th:lang="${lang}">
+<head th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">
+    <title th:text="#{title}"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css"/>
@@ -9,7 +9,8 @@
 
 <nav class="navbar navbar-light bg-light">
     <form class="form-inline">
-        <button class="btn btn-default" type="button">logout</button>
+        <li class="nav-item"><a class="nav-link" href="/logout" th:if="${session.role} != null"
+                                th:text="#{menu.logout}"></a>
         <button class="btn btn-sm btn-secondary disabled" type="button">Statistics</button>
     </form>
 </nav>
@@ -18,33 +19,36 @@
     <thead>
     <tr>
         <th scope="col" th:text ="#{creditcard.number}"></th>
-        <th scope="col">Account name</th>
-        <th scope="col">Balance</th>
         <th scope="col">block</th>
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <th scope="row">card1</th>
-        <td>account1</td>
-        <td>balance1</td>
-        <td><button>block</button></td>
+    <tr th:if="${creditcards == null}">
+        <td colspan="2"> No Cards Available </td>
     </tr>
-    <tr>
-        <th scope="row">card2</th>
-        <td>account2</td>
-        <td>balance2</td>
+    <tr th:each="creditcard : ${creditcards}" >
+        <td><span th:text="${creditcard.number}"> Title </span></td>
         <td><button>block</button></td>
+    </tbody>
+</table>
+<table class="table table-hover table-bordered">
+    <thead>
+    <tr>
+        <th scope="col"th:text="#{account.number}"></th>
+        <th scope="col"th:text="#{balance}"></th>
     </tr>
-    <tr>
-        <th scope="row">card3</th>
-        <td>account3</td>
-        <td>balance3</td>
-        <td><button>block</button></td>
+    </thead>
+    <tbody>
+    <tr th:if="${accounts == null}">
+        <td colspan="2"> No Accounts Available </td>
+    </tr>
+    <tr th:each="account : ${accounts}">
+        <td><span th:text="${account.name}"> Title </span></td>
+        <td><span th:text="${account.balance}"> Title </span></td>
     </tr>
     </tbody>
 </table>
-<a class="btn btn-success" href="/card" role="button">Add Credit Card</a>
-<button class="btn btn-warning">top up balance</button>
-<a class="btn btn-success" href="/payment" role="button">Create payment</a>
+<a class="btn btn-success" href="/card" role="button" th:text="#{addcreditcard}">Add Credit Card</a>
+<a class="btn btn-warning" href="/add_balance" role="button" th:text="#{replenishbalance}">top up balance</a>
+<a class="btn btn-success" href="/payment" role="button" th:text="#{createpayment}">Create payment</a>
 </html>

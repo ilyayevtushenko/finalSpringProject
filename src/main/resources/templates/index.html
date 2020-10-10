@@ -1,3 +1,5 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" th:with="lang=${#locale.language}" th:lang="${lang}">
 <head th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">
     <title th:text='#{title}'></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -8,24 +10,24 @@
 <div class="container" align="center">
     <form class="text-center border border-light p-5" method="POST" action="/login">
 
-        <p class="h4 mb-4">Sign in</p>
+        <p class="h4 mb-4" th:text="#{signin}"></p>
 
         <!-- Email -->
-        <label for="email">Email адрес</label>
+        <label for="email" th:text="#{email}"></label>
         <input name="email" type="email" id="email" class="form-control mb-4" placeholder="E-mail">
 
         <!-- Password -->
-        <label for="password">Пароль</label>
+        <label for="password"th:text="#{password}"></label>
         <input name="password" type="password" id="password" class="form-control mb-4" placeholder="Password">
 
         <!-- Sign in button -->
-        <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+        <button class="btn btn-info btn-block my-4" type="submit" th:text="#{signin}">Sign in</button>
 
         <!-- Register -->
         <p>Not a member?
-            <a href="/registration">Register</a>
+            <a href="/registration" th:text="#{register}">Register</a>
         </p>
 
     </form>
 </div>
-<!-- Default form login -->
+</html>
