@@ -1,3 +1,5 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" th:with="lang=${#locale.language}" th:lang="${lang}">
 <head th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">
     <title th:text='#{title}'></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -7,23 +9,26 @@
 <!-- Default form register -->
 <form class="text-center border border-light p-5" method="post" action="/payment">
 
-    <p class="h4 mb-4">Create payment</p>
+    <p class="h4 mb-4" th:text="#{create.payment}"></p>
 
     <div class="form-row mb-4">
         <div class="col">
             <!--Sender-->
-            <input name="sender" type="text" id="sender" class="form-control" placeholder="From">
+            <input name="sender" type="text" id="sender" class="form-control" th:placeholder="#{sender.card}">
         </div>
         <div class="col">
             <!--Receiver-->
-            <input name="receiver" type="text" id="receiver" class="form-control" placeholder="To">
+            <input name="receiver" type="text" id="receiver" class="form-control" th:placeholder="#{receiver.card}">
         </div>
         <div class="col">
             <!--Sum-->
-            <input name="sum" type="number" min="0" value="0" step=".01" id="sum" class="form-control" placeholder="Sum">
+            <input name="sum" type="number" min="0" value="0" step=".01" id="sum" class="form-control" th:placeholder="#{sum}">
         </div>
     </div>
     <!-- Create payment -->
-    <button class="btn btn-info my-4 btn-block" type="submit">Create Payment</button>
+    <button class="btn btn-info my-4 btn-block" type="submit" th:text="#{create.payment}"></button>
 
 </form>
+<a class="btn btn-info" href="?lang=ua">Українська</a>
+<a class="btn btn-info" href="?lang=en">English</a>
+</html>

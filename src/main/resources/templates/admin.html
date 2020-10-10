@@ -1,3 +1,5 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" th:with="lang=${#locale.language}" th:lang="${lang}">
 <head th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">
     <title th:text='#{title}'></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -12,4 +14,7 @@
 <body>
 <p>You are seeing an admin page</p>
 </body>
+
+<a class="btn btn-info" href="?lang=ua">Українська</a>
+<a class="btn btn-info" href="?lang=en">English</a>
 </html>

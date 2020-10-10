@@ -1,3 +1,5 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" th:with="lang=${#locale.language}" th:lang="${lang}">
 <head th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">
     <title th:text='#{title}'></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -7,30 +9,32 @@
 <!-- Default form register -->
 <form class="text-center border border-light p-5" method="post" action="/signUp">
 
-    <p class="h4 mb-4">Sign up</p>
+    <p class="h4 mb-4"th:text="#{sign.up}"></p>
 
     <div class="form-row mb-4">
         <div class="col">
             <!-- First name -->
-            <input name="firstName" type="text" id="first_name" class="form-control" placeholder="First name">
+            <input name="firstName" type="text" id="first_name" class="form-control" th:placeholder="#{first.name}">
         </div>
         <div class="col">
             <!-- Last name -->
-            <input name="lastName" type="text" id="last_name" class="form-control" placeholder="Last name">
+            <input name="lastName" type="text" id="last_name" class="form-control" th:placeholder="#{last.name}">
         </div>
     </div>
 
     <!-- E-mail -->
-    <input name = "email" type="email" id="email" class="form-control mb-4" placeholder="E-mail">
+    <input name = "email" type="email" id="email" class="form-control mb-4" th:placeholder="#{email}">
 
     <!-- Password -->
-    <input name="password" type="password" id="password" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+    <input name="password" type="password" id="password" class="form-control" th:placeholder="#{password}" aria-describedby="defaultRegisterFormPasswordHelpBlock">
     <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-        At least 8 characters and 1 digit
+<!--        At least 8 characters and 1 digit-->
     </small>
 
     <!-- Sign up button -->
-    <button class="btn btn-info my-4 btn-block" type="submit">Sign in</button>
+    <button class="btn btn-info my-4 btn-block" type="submit" th:text="#{register}"></button>
 
 </form>
-<!-- Default form register -->
+<a class="btn btn-info" href="?lang=ua">Українська</a>
+<a class="btn btn-info" href="?lang=en">English</a>
+</html>

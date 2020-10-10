@@ -10,24 +10,25 @@
 <div class="container" align="center">
     <form class="text-center border border-light p-5" method="POST" action="/login">
 
-        <p class="h4 mb-4" th:text="#{signin}"></p>
+        <p class="h4 mb-4" th:text="#{sign.in}"></p>
 
         <!-- Email -->
         <label for="email" th:text="#{email}"></label>
-        <input name="email" type="email" id="email" class="form-control mb-4" placeholder="E-mail">
+        <input name="email" type="email" id="email" class="form-control mb-4" th:placeholder="#{email}">
 
         <!-- Password -->
         <label for="password"th:text="#{password}"></label>
-        <input name="password" type="password" id="password" class="form-control mb-4" placeholder="Password">
+        <input name="password" type="password" id="password" class="form-control mb-4" th:placeholder="#{password}">
 
         <!-- Sign in button -->
-        <button class="btn btn-info btn-block my-4" type="submit" th:text="#{signin}">Sign in</button>
+        <button class="btn btn-info btn-block my-4" type="submit" th:text="#{sign.in}"></button>
 
         <!-- Register -->
-        <p>Not a member?
-            <a href="/registration" th:text="#{register}">Register</a>
-        </p>
+        <p th:text="#{nota.member}"></p>
+        <a class="btn btn-link" href="/registration" th:text="#{register}">Register</a>
 
     </form>
 </div>
+<a class="btn btn-info" href="?lang=ua">Українська</a>
+<a class="btn btn-info" href="?lang=en">English</a>
 </html>

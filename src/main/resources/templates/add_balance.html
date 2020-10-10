@@ -9,20 +9,23 @@
 <!-- Default form register -->
 <form class="text-center border border-light p-5" method="post" action="/add_balance">
 
-    <p class="h4 mb-4">Replenish balance</p>
+    <p class="h4 mb-4"th:text="#{replenish.balance}"></p>
 
     <div class="form-row mb-4">
         <div class="col">
             <!-- Credit Card number -->
-            <input name="number" type="text" id="number" class="form-control" placeholder="Number">
+            <input name="number" type="text" id="number" class="form-control" th:placeholder="#{credit.card.number}">
         </div>
         <div class="col">
             <!-- Balance -->
-            <input name="balance" type="number" min="0" value="0" step=".01" id="balance" class="form-control" placeholder="balance">
+            <input name="balance" type="number" min="0" value="0" step=".01" id="balance" class="form-control" th:placeholder="#{balance}">
         </div>
     </div>
     <!-- Replenish button -->
-    <button class="btn btn-info my-4 btn-block" type="submit">Replenish</button>
+    <button class="btn btn-info my-4 btn-block" type="submit" th:text="#{replenish}"></button>
 
 </form>
+
+<a class="btn btn-info" href="?lang=ua">Українська</a>
+<a class="btn btn-info" href="?lang=en">English</a>
 </html>
