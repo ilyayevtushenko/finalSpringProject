@@ -11,7 +11,7 @@
     <form class="form-inline">
         <li class="nav-item"><a class="nav-link" href="/logout" th:if="${session.role} != null"
                                 th:text="#{menu.logout}"></a>
-        <button class="btn btn-sm btn-secondary disabled" type="button">Statistics</button>
+        <a class="btn btn-sm btn-secondary" href="/statistics" role="button">Statistics</a>
     </form>
 </nav>
 

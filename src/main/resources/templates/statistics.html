@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:with="lang=${#locale.language}" th:lang="${lang}"
+      contentType="text/html;charset=UTF-8">
+<head th:fragment="header">
+    <title ></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+</head>
+<body>
+<form th:action="@{/statistics}">
+    <span th:text="account.sortby"></span>
+    <select id="sortBy" name="sortBy">
+        <option th:value="number" th:text="number" th:selected="${sortBy == 'id'}"></option>
+        <option th:value="name" th:text="name" th:selected="${sortBy == 'name'}"></option>
+    </select>
+
+    <input type="text" id="searchBy" name="searchBy" th:value="${searchBy}" />
+    <button type="submit" th:text="search"></button>
+</form>
+
+
+
+<table>
+    <thead>
+    <tr>
+        <th th:text="#{account.id}"></th>
+        <th th:text="#{account.number}"></th>
+        <th th:text="#{balance}"></th>
+        <!--        <th th:text="#{book.authors}"></th>-->
+
+        <th th:text="#{action.edit_account}"></th>
+    </tr>
+    </thead>
+    <tr th:each="account : ${accounts}">
+
+        <td th:text="${account.id}"></td>
+        <td th:text="${account.name}"></td>
+
+        <td th:text="${account.balance}"></td>
+    </tr>
+</table>
+
+
+<div class="pagination">
+    <div th:if="${currentPage != 1}">
+        <a class="page-link" th:href="@{/statistics(size=${accounts.size}, currentPage=${currentPage - 1}, sortBy=${sortBy}, searchBy=${searchBy})}"> prev </a>
+    </div>
+
+    <ul class="pagination justify-content-center" th:if="${accounts.totalPages > 0}"
+        th:each="pageNumber : ${pageNumbers}">
+        <li class="page-item" th:classappend="${pageNumber==accounts.number + 1} ? 'active'">
+            <a th:href="@{/reader(size=${accounts.size}, currentPage=${pageNumber}, sortBy=${sortBy}, searchBy=${searchBy})}"
+               th:text=${pageNumber}
+            ></a>
+        </li>
+    </ul>
+    <div th:if="${currentPage < accounts.totalPages}">
+        <a class="page-link" th:href="@{/reader(size=${accounts.size}, currentPage=${currentPage + 1}, sortBy=${sortBy}, searchBy=${searchBy})}"> next </a>
+    </div>
+</div>
+
+
+
+<br><br><br>
+
+
+
+</body>
+</html>

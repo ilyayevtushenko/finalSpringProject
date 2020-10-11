@@ -19,15 +19,14 @@ public class Payment {
 
     private Long id;
 
-
     private String date;
 
     @PositiveOrZero
     private BigDecimal price;
-
     private PaymentEntity.PAYMENT_STATUS paymentStatus;
-    private File receipt;
     private Account account;
     private User sender;
     private User receiver;
+
+    //private File receipt;
 }
