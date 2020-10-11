@@ -6,6 +6,7 @@ import com.example.finalSpringProject.model.entity.CreditCardEntity;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
@@ -18,6 +19,7 @@ public class AccountMapper {
     public AccountMapper(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
     }
+
     public Account accountEntityToAccount (AccountEntity accountEntity){
         return Objects.isNull(accountEntity) ? null
                 : modelMapper.map(accountEntity, Account.class);
@@ -29,4 +31,5 @@ public class AccountMapper {
 
 
     }
+
 }

@@ -1,5 +1,7 @@
 package com.example.finalSpringProject.model.service.impl;
 
+import com.example.finalSpringProject.model.domain.Payment;
+import com.example.finalSpringProject.model.entity.AccountEntity;
 import com.example.finalSpringProject.model.entity.PaymentEntity;
 import com.example.finalSpringProject.model.entity.UserEntity;
 import com.example.finalSpringProject.model.exeptions.InvalidDataRuntimeException;
@@ -7,6 +9,7 @@ import com.example.finalSpringProject.model.repository.PaymentRepository;
 import com.example.finalSpringProject.model.repository.UserRepository;
 import com.example.finalSpringProject.model.service.AccountService;
 import com.example.finalSpringProject.model.service.PaymentService;
+import com.example.finalSpringProject.model.service.mapper.AccountMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Set;
 
 
 @Service
@@ -24,6 +28,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     private final UserRepository userRepository;
     private final AccountService accountService;
+    private final AccountMapper accountMapper;
     private final PaymentRepository paymentRepository;
 
     @Override
@@ -38,7 +43,8 @@ public class PaymentServiceImpl implements PaymentService {
 
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
         Date date = new Date(System.currentTimeMillis());
-        System.out.println(formatter.format(date));
+
+        AccountEntity accountEntity = accountMapper.accountToAccountEntity(accountService.findByCardNumber(sender));
 
         PaymentEntity paymentEntity = new PaymentEntity();
 
@@ -46,6 +52,7 @@ public class PaymentServiceImpl implements PaymentService {
         paymentEntity.setReceiver(receiverEntity);
         paymentEntity.setDate(formatter.format(date));
         paymentEntity.setPrice(sum);
+        paymentEntity.setAccounts(accountEntity);
 
         paymentEntity.setPaymentStatus(PaymentEntity.PAYMENT_STATUS.READY);
 
@@ -59,5 +66,10 @@ public class PaymentServiceImpl implements PaymentService {
 
 
 
+    }
+
+    @Override
+    public Set<Payment> findAllByEmail(String email) {
+        return null;
     }
 }

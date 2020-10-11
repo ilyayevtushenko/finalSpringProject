@@ -1,15 +1,14 @@
 package com.example.finalSpringProject.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.File;
 import java.math.BigDecimal;
+import java.util.Objects;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -35,9 +34,6 @@ public class PaymentEntity {
     @Column (name = "payment_status")
     private PAYMENT_STATUS paymentStatus;
 
-    @Basic(optional = false)
-    @Column(name = "receipt")
-    private File receipt;
 
     @ManyToOne
     @JoinColumn(name="account_id", nullable=false)
@@ -51,7 +47,27 @@ public class PaymentEntity {
     @JoinColumn(name="receiver_id", insertable = false, updatable = false)
     private UserEntity receiver;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PaymentEntity)) return false;
+        PaymentEntity that = (PaymentEntity) o;
+        return Objects.equals(getId(), that.getId()) &&
+                Objects.equals(getDate(), that.getDate()) &&
+                Objects.equals(getPrice(), that.getPrice()) &&
+                getPaymentStatus() == that.getPaymentStatus();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getDate(), getPrice(), getPaymentStatus());
+    }
+
     public enum PAYMENT_STATUS {
         READY, SENT
     }
+
+//    @Basic(optional = false)
+//    @Column(name = "receipt")
+//    private File receipt;
 }
